@@ -63,18 +63,18 @@ def older_file(fname, dir):
     os.rename(dir + fname, os.path.splitext(dir + fname)[0] + '.old' + os.path.splitext(dir + fname)[1])
 
 
-def folder_is_hidden(p):
+def folder_is_hidden(fname, dir):
     if os.name == 'nt':
-        attribute = win32api.GetFileAttributes(p)
+        attribute = win32api.GetFileAttributes(dir + fname)
         return attribute & (win32con.FILE_ATTRIBUTE_HIDDEN | win32con.FILE_ATTRIBUTE_SYSTEM)
     else:
-        return p.startswith('.')  # linux-osx
+        return fname.startswith('.')  # linux-osx
 
 
 def update_dir_mtime(dir):
     import unicodedata
     listdir = [unicodedata.normalize('NFC', f) for f in os.listdir(dir)]
-    listdir = [f for f in listdir if not folder_is_hidden(f)]
+    listdir = [f for f in listdir if not folder_is_hidden(f, dir)]
     for sub in listdir:
         if os.path.isdir(dir + sub + '/'):
             update_dir_mtime(dir + sub + '/')

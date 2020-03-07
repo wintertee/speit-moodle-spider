@@ -18,9 +18,9 @@ NOTICE: Current version (V1.0) is **NOT** compatible with previous version. Plea
 
 - Install requirements:
 
-  - `pip install -r requirements.txt`
+  - For Unix or Linux: `pip install -r requirements.txt` or `pip3 install -r requirements.txt`
 
-  - or `pip3 install -r requirements.txt`
+  - For Windows: `pip install -r requirements-nt.txt` or `pip3 install -r requirements-nt.txt`
 
 - Make a copy of `config/conf.exemple.py` and rename it as `conf.py`
 
