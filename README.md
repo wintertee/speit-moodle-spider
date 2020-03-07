@@ -8,19 +8,19 @@ NOTICE: Current version (V1.0) is **NOT** compatible with previous version. Plea
 
 - Make a new directory: `mkdir moodle_spider && cd moodle_spider`
 
-- Go to [Realease](https://github.com/wintertee/speit-moodle-spider/releases) and download the program.
+- Go to [Realease](https://github.com/wintertee/speit-moodle-spider/releases), download and unzip the source code.
 
-- ~~You can also download at <https://www.wintertee.top/cloud_storage_wintertee/speit_moodle_spider/>~~
+- You can also download it at <https://www.wintertee.top/cloud_storage_wintertee/speit_moodle_spider/>
 
-- Or you can simply use `git clone https://github.com/wintertee/speit_moodle_spider.git` 
+- Or you can simply use `git clone https://github.com/wintertee/speit_moodle_spider.git`
 
 ## Configuration
 
 - Install requirements:
 
-  - For Unix or Linux: `pip install -r requirements.txt` or `pip3 install -r requirements.txt`
+  - On Unix or Linux: `pip install -r requirements.txt` or `pip3 install -r requirements.txt`
 
-  - For Windows: `pip install -r requirements-nt.txt` or `pip3 install -r requirements-nt.txt`
+  - On Windows: `pip install -r requirements-nt.txt` or `pip3 install -r requirements-nt.txt`
 
 - Make a copy of `config/conf.exemple.py` and rename it as `conf.py`
 
