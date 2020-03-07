@@ -8,7 +8,7 @@ A simple spider to crawl files at moodle
 
 - Go to [Realease](https://github.com/wintertee/speit-moodle-spider/releases) and download the program.
 
-- You can also download at <https://www.wintertee.top/cloud_storage_wintertee/speit_moodle_spider/>
+- ~~You can also download at <https://www.wintertee.top/cloud_storage_wintertee/speit_moodle_spider/>~~
 
 - Or you can simply use `git clone https://github.com/wintertee/speit_moodle_spider.git` 
 
