@@ -1,6 +1,8 @@
 # Speit_moodle_spider
 
-A simple spider to crawl files at moodle
+A simple spider to crawl files at moodle.  
+
+NOTICE: Current version (V1.0) is **NOT** compatible with previous version. Please delete all files of previous version before using it!
 
 ## Download
 
