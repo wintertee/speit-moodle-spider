@@ -15,14 +15,14 @@ COURSE_URL_LIST = [
     # URL for Introduction to quantum physics and statistical physics
     'http://moodle.speit.sjtu.edu.cn/moodle/course/view.php?id=626',
     # URL for Probability & statistics
-    'http://moodle.speit.sjtu.edu.cn/moodle/course/view.php?id=621',
+    'http://moodle.speit.sjtu.edu.cn/moodle/course/view.php?id=621'
 ]
 
 # set True to ignore COURSE_URL_LIST and download all accessible courses
 CRAZY_MODE = False
 
 # -----------------------------------------
-# GENERAL CONFIFGURATION (DO NOT CHANGE IT)
+# GENERAL CONFIGURATION (DO NOT CHANGE IT)
 # -----------------------------------------
 
 # sleep before each HTTP get method
