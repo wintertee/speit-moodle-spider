@@ -18,6 +18,8 @@ A simple spider to crawl files at moodle.
 
 ## Configuration
 
+- Install Python 3.
+
 - Install requirements:
 
   - On Unix or Linux: `pip install -r requirements.txt` or `pip3 install -r requirements.txt`
