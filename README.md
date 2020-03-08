@@ -3,14 +3,14 @@
 A simple spider to crawl files at moodle.  
 
 ### NOTICE
-- Current version (V1.0) is **NOT** compatible with previous version. Please delete all files of previous version before using it!
+- The current version (V1.0) is **NOT** compatible with any previous version. Please delete all files of the previous version before using it!
 - Do **NOT** modify files downloaded, if you want to, copy them to another directory first.
 
 ## Download
 
 - Make a new directory: `mkdir moodle_spider && cd moodle_spider`
 
-- Go to [Realease](https://github.com/wintertee/speit-moodle-spider/releases), download and unzip the source code.
+- Go to [Release](https://github.com/wintertee/speit-moodle-spider/releases), download and unzip the source code.
 
 - You can also download it at <https://www.wintertee.top/cloud_storage_wintertee/speit_moodle_spider/>
 
@@ -26,7 +26,7 @@ A simple spider to crawl files at moodle.
 
 - Make a copy of `config/conf.exemple.py` and rename it as `conf.py`
 
-- Edit the `config/conf.py` with your personal infos.  
+- Edit the `config/conf.py` with your personal info.  
 
 ## Usage
 
@@ -38,7 +38,7 @@ A simple spider to crawl files at moodle.
 
 ## Notice
 
-- Only tested with student accuonts.
+- Only tested with student account.
 
 ## Support me
 
