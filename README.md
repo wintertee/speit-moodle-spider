@@ -1,8 +1,9 @@
 # SPEIT Moodle spider
 
 ![GitHub](https://img.shields.io/github/license/wintertee/speit-moodle-spider)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/wintertee/speit-moodle-spider)
 
-A simple spider to crawl files at moodle.  
+A simple Moodle crawler.  
 
 ### NOTICE
 - The current version (V1.0) is **NOT** compatible with any previous version. Please delete all files of the previous version before using it!
