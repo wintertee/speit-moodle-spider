@@ -5,10 +5,6 @@
 
 A simple Moodle crawler.  
 
-### NOTICE
-- The current version (V1.0) is **NOT** compatible with any previous version. Please delete all files of the previous version before using it!
-- Do **NOT** modify files downloaded, if you want to, copy them to another directory first.
-
 ## Download
 
 - Make a new directory: `mkdir moodle_spider && cd moodle_spider`
@@ -19,7 +15,7 @@ A simple Moodle crawler.
 
 - Or you can simply use `git clone https://github.com/wintertee/speit-moodle-spider.git`
 
-## Configuration
+## Installation
 
 - Install Python 3.
 
@@ -43,11 +39,15 @@ A simple Moodle crawler.
 
 ## Notice
 
+- The current version (V1.0) is **NOT** compatible with any previous version. Please delete all files of the previous version before using it!
+
+- Do **NOT** modify files downloaded, if you want to, copy them to another directory first.
+
 - Only tested with student account.
 
 ## Support me
 
-If this tiny program is helpful to you, please leave a **star** in the upper right corner of the home page :D
+If this tiny program is helpful to you, please leave a **star** in the upper right corner of the home page 🤣
 
 ## Brother project
 
