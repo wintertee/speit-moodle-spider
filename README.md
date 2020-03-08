@@ -1,4 +1,4 @@
-# Speit_moodle_spider
+# SPEIT Moodle spider
 
 A simple spider to crawl files at moodle.  
 
@@ -12,7 +12,7 @@ NOTICE: Current version (V1.0) is **NOT** compatible with previous version. Plea
 
 - You can also download it at <https://www.wintertee.top/cloud_storage_wintertee/speit_moodle_spider/>
 
-- Or you can simply use `git clone https://github.com/wintertee/speit_moodle_spider.git`
+- Or you can simply use `git clone https://github.com/wintertee/speit-moodle-spider.git`
 
 ## Configuration
 
