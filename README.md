@@ -1,5 +1,7 @@
 # SPEIT Moodle spider
 
+![GitHub](https://img.shields.io/github/license/wintertee/speit-moodle-spider)
+
 A simple spider to crawl files at moodle.  
 
 ### NOTICE
