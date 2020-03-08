@@ -2,7 +2,9 @@
 
 A simple spider to crawl files at moodle.  
 
-NOTICE: Current version (V1.0) is **NOT** compatible with previous version. Please delete all files of previous version before using it!
+### NOTICE
+- Current version (V1.0) is **NOT** compatible with previous version. Please delete all files of previous version before using it!
+- Do **NOT** modify files downloaded, if you want to, copy them to another directory first.
 
 ## Download
 
@@ -40,7 +42,7 @@ NOTICE: Current version (V1.0) is **NOT** compatible with previous version. Plea
 
 ## Support me
 
-If this tiny script is helpful to you, please leave a **star** in the upper right corner of the home page :D
+If this tiny program is helpful to you, please leave a **star** in the upper right corner of the home page :D
 
 ## Brother project
 
