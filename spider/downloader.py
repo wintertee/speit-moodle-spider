@@ -125,13 +125,13 @@ def download_proccess(extract, dir):
         remote_date = utils.datetime_from_utc_to_local(remote_date)
         local_date = utils.get_local_date(fname, dir)
         if remote_date > local_date:
-            logger.info('Updating ' + fname)
+            logger.info('Updating ' + '\033[1;34m' + fname + '\033[0m')
             utils.older_file(fname, dir)
             download(dir, fname, download_link, remote_date=remote_date)
         else:
             logger.debug('no update: ' + fname + ' from ' + download_link)
     else:
-        logger.info('Downloading ' + fname)
+        logger.info('Downloading ' + '\033[1;32m' + fname + '\033[0m')
         download(dir, fname, download_link)
 
 
