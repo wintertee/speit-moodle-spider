@@ -122,17 +122,16 @@ def download_proccess(extract, dir):
                     if remote_date > local_date:
                         utils.older_file(fname, dir)
                         success = download(dir, fname, download_link, remote_date=remote_date)
+                        if success:
+                            file_tree.print(fname, -1, color=Fore.YELLOW)
                     else:
                         return
-                # else:
-                #     print('no update: ' + fname + ' from ' + download_link)
             else:
                 success = download(dir, fname, download_link)
-
-        if success:
-            file_tree.print(fname, -1, color=Fore.YELLOW)
-        else:
-            file_tree.print(fname, -1, color=Fore.RED)
+                if success:
+                    file_tree.print(fname, -1, color=Fore.GREEN)
+    if not success:
+        file_tree.print(fname, -1, color=Fore.RED)
 
 
 def download_files(soup, dir):

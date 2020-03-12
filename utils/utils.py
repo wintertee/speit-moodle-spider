@@ -4,6 +4,7 @@
 import os
 import datetime
 import time
+import unicodedata
 
 if os.name == 'nt':
     import win32api
@@ -58,9 +59,22 @@ def get_local_date(fname, dir):
 
 
 def older_file(fname, dir):
-    if file_exist(os.path.splitext(fname)[0] + '.old' + os.path.splitext(fname)[1], dir):
-        older_file(os.path.splitext(fname)[0] + '.old' + os.path.splitext(fname)[1], dir)
+    older_name = os.path.splitext(fname)[0] + '.old' + os.path.splitext(fname)[1]
+    if file_exist(older_name, dir):
+        older_file(older_name, dir)
     os.rename(dir + fname, os.path.splitext(dir + fname)[0] + '.old' + os.path.splitext(dir + fname)[1])
+
+
+def delete_old_files(dir):
+    listdir = [unicodedata.normalize('NFC', f) for f in os.listdir(dir)]
+    listdir = [f for f in listdir if not folder_is_hidden(f, dir)]
+    for sub in listdir:
+        if os.path.isdir(dir + sub + '/'):
+            delete_old_files(dir + sub + '/')
+        else:
+            if '.old' in sub:
+                os.remove(dir + sub)
+                print("Deleted: " + dir + sub)
 
 
 def folder_is_hidden(fname, dir):
@@ -72,7 +86,6 @@ def folder_is_hidden(fname, dir):
 
 
 def update_dir_mtime(dir):
-    import unicodedata
     listdir = [unicodedata.normalize('NFC', f) for f in os.listdir(dir)]
     listdir = [f for f in listdir if not folder_is_hidden(f, dir)]
     for sub in listdir:

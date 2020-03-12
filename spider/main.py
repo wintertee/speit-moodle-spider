@@ -20,8 +20,8 @@ def run():
     try:
         colorama.init(autoreset=True)
 
-        print('------------SPEIT-MOODLE-SPIDER V1.0------------')
-        print('https://github.com/wintertee/speit_moodle_spider')
+        print('------------SPEIT-MOODLE-SPIDER V1.1------------')
+        print('https://github.com/wintertee/speit-moodle-spider')
         print('------------------------------------------------')
         print('Program started. Enter Ctrl+C to exit.')
 
@@ -58,6 +58,11 @@ def run():
                     'a', href=re.compile(r"http://moodle.speit.sjtu.edu.cn/moodle/course/view.php\?id=[0-9]+")):
                 conf.COURSE_URL_LIST.append(extract.get('href'))
 
+        print('---------------------LEGEND---------------------')
+        print(Fore.GREEN + 'Green for downloaded')
+        print(Fore.YELLOW + 'Yellow for updated')
+        print(Fore.RED + 'Red for error')
+        print('--------------------FileTree--------------------')
         file_tree.print('downloads', 0)
 
         # TRAVERSE COURSES
@@ -82,10 +87,15 @@ def run():
             downloader.download_files(soup, dir)
             downloader.download_folders(soup, dir)
     except KeyboardInterrupt:
-        print("KeyboardInterrupt, exiting...")
+        print("KeyboardInterrupt, stop downloading...")
         pass
 
     # UPDATE MTIME
     utils.update_dir_mtime(path.DOWNLOAD_DIR)
 
-    print("All finished.")
+    print('------------------------------------------------')
+    ans = input("Delete all outdated files? [y/n]:")
+    if ans == 'y' or ans == 'Y':
+        utils.delete_old_files(path.DOWNLOAD_DIR)
+    print('------------------------------------------------')
+    print("Bye.")
