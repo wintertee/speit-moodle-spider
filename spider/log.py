@@ -19,18 +19,20 @@ def init_logger(name):
     fh = logging.FileHandler(path.LOG_DIR)
     fh.setLevel(logging.WARNING)
     sh = logging.StreamHandler()
-    if DEBUG:
-        sh.setLevel(logging.DEBUG)
-        formatter = logging.Formatter('%(asctime)s %(name)s : %(levelname)s - %(message)s')
-    else:
-        sh.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(levelname)s: %(message)s')
+    # if DEBUG:
+    #     sh.setLevel(logging.DEBUG)
+    #     formatter = logging.Formatter('%(asctime)s %(name)s : %(levelname)s - %(message)s')
+    # else:
+    #     sh.setLevel(logging.INFO)
+    #     formatter = logging.Formatter('%(levelname)s: %(message)s')
+
+    formatter = logging.Formatter('%(asctime)s %(name)s : %(levelname)s - %(message)s')
 
     fh.setFormatter(formatter)
-    sh.setFormatter(formatter)
+    # sh.setFormatter(formatter)
 
     logger.addHandler(fh)
-    logger.addHandler(sh)
+    # logger.addHandler(sh)
 
     return logger
 

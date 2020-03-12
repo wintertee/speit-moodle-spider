@@ -7,15 +7,14 @@ import time
 import cgi
 from dateutil.parser import parse as parsedate
 from bs4 import BeautifulSoup
+from colorama import Fore
 
 from . import path  # noqa: F401
 from . import extractor
-from . import log
 from .session import session
 from config import conf
 from utils import utils
-
-logger = log.get_logger('spider.downloader')
+from utils.FileTree import file_tree
 
 
 def get_download_link(extract, fname='unknown'):
@@ -27,7 +26,6 @@ def get_download_link(extract, fname='unknown'):
     download_link_raw = extract.get('href')
     r = session.head(download_link_raw)
     if r is False:
-        logger.warning('Failed to parse ' + download_link_raw)
         return None
 
     # redirection
@@ -35,14 +33,12 @@ def get_download_link(extract, fname='unknown'):
         download_link_raw = r.headers['location']
         r = session.head(download_link_raw)
         if r is False:
-            logger.warning('Failed to parse ' + download_link_raw)
             return None
 
     # for embedded video/photo/audio, store the link in download_link
     if 'Content-Disposition' not in r.headers:
         r = session.get(download_link_raw)
         if r is False:
-            logger.warning('Failed to parse ' + download_link_raw)
             return None
         soup = BeautifulSoup(r.text, 'html.parser')
         for fonction in extractor.extractors:
@@ -50,7 +46,7 @@ def get_download_link(extract, fname='unknown'):
             if download_link is not None:
                 break
         if download_link is None:
-            logger.warning('Failed to download ' + fname + ' from ' + download_link_raw)
+            return None
         return download_link
     else:
         return download_link_raw
@@ -70,14 +66,13 @@ def get_remote_date(download_link):
 def download(dir, fname, download_link, remote_date=None):
     r = session.get(download_link)
     if r is False:
-        logger.warning('Failed to download ' + fname + ' from ' + download_link)
+        return False
 
     # remote date
     if remote_date is None:
         remote_date = get_remote_date(download_link)
         if remote_date is None:
-            logger.warning('Failed to check remote date of ' + fname + ' from ' + download_link)
-            return
+            return False
         remote_date = utils.datetime_from_utc_to_local(remote_date)
 
     # in case of fname do not contains an extension
@@ -93,7 +88,7 @@ def download(dir, fname, download_link, remote_date=None):
     remote_date = time.mktime(remote_date.timetuple())
     # set mtime and atime
     os.utime(dir + fname, (remote_date, remote_date))
-    logger.info("Done")
+    return True
 
 
 def download_proccess(extract, dir):
@@ -109,30 +104,35 @@ def download_proccess(extract, dir):
     fname = extractor.fname(extract)
     if fname is False:
         return
-
-    download_link = get_download_link(extract, fname)
-    if download_link is None:
-        return
-
-    # if file already exists
-    if utils.file_exist(fname, dir):
-        # check update
-        fname = utils.file_exist(fname, dir)
-        remote_date = get_remote_date(download_link)
-        if remote_date is None:
-            logger.warning('Failed to check remote date of ' + fname + ' from ' + download_link)
-            return
-        remote_date = utils.datetime_from_utc_to_local(remote_date)
-        local_date = utils.get_local_date(fname, dir)
-        if remote_date > local_date:
-            logger.info('Updating ' + '\033[1;33m' + fname + '\033[0m')
-            utils.older_file(fname, dir)
-            download(dir, fname, download_link, remote_date=remote_date)
-        else:
-            logger.debug('no update: ' + fname + ' from ' + download_link)
     else:
-        logger.info('Downloading ' + '\033[1;32m' + fname + '\033[0m')
-        download(dir, fname, download_link)
+        download_link = get_download_link(extract, fname)
+        if download_link is None:
+            success = False
+        else:
+            # if file already exists
+            if utils.file_exist(fname, dir):
+                # check update
+                fname = utils.file_exist(fname, dir)
+                remote_date = get_remote_date(download_link)
+                if remote_date is None:
+                    success = False
+                else:
+                    remote_date = utils.datetime_from_utc_to_local(remote_date)
+                    local_date = utils.get_local_date(fname, dir)
+                    if remote_date > local_date:
+                        utils.older_file(fname, dir)
+                        success = download(dir, fname, download_link, remote_date=remote_date)
+                    else:
+                        return
+                # else:
+                #     print('no update: ' + fname + ' from ' + download_link)
+            else:
+                success = download(dir, fname, download_link)
+
+        if success:
+            file_tree.print(fname, -1, color=Fore.YELLOW)
+        else:
+            file_tree.print(fname, -1, color=Fore.RED)
 
 
 def download_files(soup, dir):
@@ -160,15 +160,16 @@ def download_folders(soup, dir):
     for extract in soup.find('div', role="main").find_all(
             'a', href=re.compile(r"http://moodle.speit.sjtu.edu.cn/moodle/mod/folder/view.php\?id=[0-9]+")):
         folder_link = extract.get('href')
-        subdir, *_ = extract.find('span', "instancename").stripped_strings
-        logger.info('Enter sub directory: ' + subdir)
-        subdir = dir + subdir + '/'
+        subdir_name, *_ = extract.find('span', "instancename").stripped_strings
+        subdir = dir + subdir_name + '/'
         os.makedirs(subdir, exist_ok=True)
         time.sleep(conf.SLEEP_TIME)
         response = session.get(url=folder_link)
         if response is False:
-            logger.warning('Failed to prase sub directory: ' + subdir)
+            file_tree.print(subdir_name, 2, color=Fore.RED)
             return
+        else:
+            file_tree.print(subdir_name, 2)
         subsoup = BeautifulSoup(response.text, 'html.parser')
 
         download_files(subsoup, subdir)
