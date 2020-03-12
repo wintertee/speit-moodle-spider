@@ -7,8 +7,6 @@ A simple Moodle crawler.
 
 ## Download
 
-- Make a new directory: `mkdir moodle_spider && cd moodle_spider`
-
 - Go to [Release](https://github.com/wintertee/speit-moodle-spider/releases), download and unzip the source code.
 
 - You can also download it at <https://www.wintertee.top/cloud_storage_wintertee/speit_moodle_spider/>
@@ -19,7 +17,7 @@ A simple Moodle crawler.
 
 - Install Python 3.
 
-- Install requirements:
+- Install dependency:
 
   - On Unix or Linux: `pip install -r requirements.txt` or `pip3 install -r requirements.txt`
 
@@ -39,9 +37,9 @@ A simple Moodle crawler.
 
 ## Notice
 
-- The current version (V1.0) is **NOT** compatible with any previous version. Please delete all files of the previous version before using it!
+- The current version (V1.0) is **NOT** compatible with any previous version. Please delete all the files of the previous version before using it!
 
-- Do **NOT** modify files downloaded, if you want to, copy them to another directory first.
+- Do **NOT** modify files downloaded, if you want, copy them to another directory first.
 
 - Only tested with student account.
 
