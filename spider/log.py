@@ -21,10 +21,11 @@ def init_logger(name):
     sh = logging.StreamHandler()
     if DEBUG:
         sh.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s %(name)s : %(levelname)s - %(message)s')
     else:
         sh.setLevel(logging.INFO)
+        formatter = logging.Formatter('%(levelname)s: %(message)s')
 
-    formatter = logging.Formatter('%(asctime)s %(name)s : %(levelname)s - %(message)s')
     fh.setFormatter(formatter)
     sh.setFormatter(formatter)
 
