@@ -92,10 +92,4 @@ def run():
 
     # UPDATE MTIME
     utils.update_dir_mtime(path.DOWNLOAD_DIR)
-
-    print('------------------------------------------------')
-    ans = input("Delete all outdated files? [y/n]:")
-    if ans == 'y' or ans == 'Y':
-        utils.delete_old_files(path.DOWNLOAD_DIR)
-    print('------------------------------------------------')
-    print("Bye.")
+    print('Done.')

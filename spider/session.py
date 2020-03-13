@@ -2,13 +2,11 @@ import requests
 import time
 import http
 from . import path  # noqa: F401
-from . import log
 from config.conf import SLEEP_TIME
 
 
 class Session(requests.Session):
     header_close = {'Connection': 'close'}
-    logger = log.get_logger('spider.session')
 
     def get(self, url, **kwargs):
         time.sleep(SLEEP_TIME)
@@ -16,7 +14,6 @@ class Session(requests.Session):
             try:
                 return super().get(url, headers=Session.header_close, **kwargs)
             except (requests.exceptions.ChunkedEncodingError, http.client.HTTPException, requests.exceptions.ConnectionError):
-                Session.logger.debug('Session get failed')
                 time.sleep(10)
                 continue
             break
@@ -27,11 +24,9 @@ class Session(requests.Session):
             try:
                 return super().head(url, headers=Session.header_close, **kwargs)
             except (requests.exceptions.ChunkedEncodingError, http.client.HTTPException, requests.exceptions.ConnectionError):
-                Session.logger.debug('Session head Error')
                 time.sleep(10)
                 continue
             break
-        Session.logger.debug('Sesson head failed')
         return False
 
 

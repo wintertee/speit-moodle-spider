@@ -65,18 +65,6 @@ def older_file(fname, dir):
     os.rename(dir + fname, os.path.splitext(dir + fname)[0] + '.old' + os.path.splitext(dir + fname)[1])
 
 
-def delete_old_files(dir):
-    listdir = [unicodedata.normalize('NFC', f) for f in os.listdir(dir)]
-    listdir = [f for f in listdir if not folder_is_hidden(f, dir)]
-    for sub in listdir:
-        if os.path.isdir(dir + sub + '/'):
-            delete_old_files(dir + sub + '/')
-        else:
-            if '.old' in sub:
-                os.remove(dir + sub)
-                print("Deleted: " + dir + sub)
-
-
 def folder_is_hidden(fname, dir):
     if os.name == 'nt':
         attribute = win32api.GetFileAttributes(dir + fname)
