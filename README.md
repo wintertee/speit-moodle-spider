@@ -37,8 +37,6 @@ A simple Moodle crawler.
 
 ## Notice
 
-- The current version (V1.x) is **NOT** compatible with any previous version. Please delete all the files of the previous version before using it!
-
 - Do **NOT** modify files downloaded, if you want, copy them to another directory first.
 
 - Only tested with student account.
