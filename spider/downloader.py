@@ -142,10 +142,15 @@ def download_files(soup, dir):
         dir: download directory
     """
     main = soup.find('div', role="main")
-    for extract in main.find_all(
-            'a', href=re.compile(r"http://moodle.speit.sjtu.edu.cn/moodle/mod/resource/view.php\?id=[0-9]+")):
+    resource = main.find_all(
+        'a', href=re.compile(r"http://moodle.speit.sjtu.edu.cn/moodle/mod/resource/view.php\?id=[0-9]+"))
+    resource.reverse()
+    for extract in resource:
         download_proccess(extract, dir)
-    for extract in main.find_all('a', href=re.compile(r"http://moodle.speit.sjtu.edu.cn/moodle/pluginfile.php/(.*)")):
+
+    pluginfiles = main.find_all('a', href=re.compile(r"http://moodle.speit.sjtu.edu.cn/moodle/pluginfile.php/(.*)"))
+    pluginfiles.reverse()
+    for extract in pluginfiles:
         download_proccess(extract, dir)
 
 
@@ -156,8 +161,10 @@ def download_folders(soup, dir):
         soup: a BeautifulSoup object
         dir: download directory
     """
-    for extract in soup.find('div', role="main").find_all(
-            'a', href=re.compile(r"http://moodle.speit.sjtu.edu.cn/moodle/mod/folder/view.php\?id=[0-9]+")):
+    folders = soup.find('div', role="main").find_all(
+        'a', href=re.compile(r"http://moodle.speit.sjtu.edu.cn/moodle/mod/folder/view.php\?id=[0-9]+"))
+    folders.reverse()
+    for extract in folders:
         folder_link = extract.get('href')
         subdir_name, *_ = extract.find('span', "instancename").stripped_strings
         subdir = dir + subdir_name + '/'

@@ -20,7 +20,7 @@ def run():
     try:
         colorama.init(autoreset=True)
 
-        print('------------SPEIT-MOODLE-SPIDER V1.1------------')
+        print('-----------SPEIT-MOODLE-SPIDER V1.1.1-----------')
         print('https://github.com/wintertee/speit-moodle-spider')
         print('------------------------------------------------')
         print('Program started. Enter Ctrl+C to exit.')
